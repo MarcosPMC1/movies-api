@@ -1,15 +1,7 @@
 
 # Movies API &middot; ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?logo=postgresql&logoColor=white) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?logo=redis&logoColor=white) ![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?logo=nestjs&logoColor=white)
 
-
-
 Este projeto backend procura abordar diferentes técnicas e habilidades de backend e infraestrutura com Docker. Se trata de uma API para listagem e cadastro de um catálogo de filmes.
-
-
-
-## Demo
-
-[Link](https://github.com/MarcosPMC1/movies-api)
 
 ## Tech Stack
 
@@ -30,15 +22,28 @@ Este projeto backend procura abordar diferentes técnicas e habilidades de backe
 - Ambiente de produção e desenvolvimento
 
 
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
-
 ## Feedback
 
-Para entrar em contato, este é meu email fmarcospmcdev@hotmail.com
+Para entrar em contato, este é meu email marcospmcdev@hotmail.com
 
+
+## Environment Variables
+
+Para você fazer este projeto funcionar é necessario informar estes valores no .env
+
+`NODE_ENV` = 'prod' | 'dev' | 'test'
+
+`POSTGRES_PASSWORD`
+
+`POSTGRES_USER`
+
+`POSTGRES_DB`
+
+`POSTGRES_HOST`
+
+`REDIS_HOST`
+
+`REDIS_PORT`
 
 ## 🔗 Links
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://marcoscardoso-dev.netlify.app/)
