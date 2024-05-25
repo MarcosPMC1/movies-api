@@ -1,8 +1,8 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 import { Cache } from 'cache-manager';
 
 @Injectable()
@@ -17,6 +17,15 @@ export class MoviesService {
   async create(createMovieDto: CreateMovieDto) {
     await this.cacheManager.del('movies')
     return this.movieRepository.save(this.movieRepository.create(createMovieDto))
+    .catch((err) => {
+      console.log(err.detail)
+      if (/(email)[\s\S]+(already exists)/.test(err.detail)) {
+        throw new BadRequestException(
+          'Movie with this title already exists.',
+        );
+      }
+      throw new Error(err)
+    })
   }
 
   findAll() {

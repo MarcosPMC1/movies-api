@@ -11,6 +11,18 @@ COPY . .
 
 RUN npm run build
 
+CMD ["npm", "run", "start:dev"]
+
+
+# Teste
+FROM dev as test
+
+COPY test ./
+
+ENV CI=true
+
+CMD ["npm", "run", "test"]
+
 # Produção
 FROM node:lts as prod
 

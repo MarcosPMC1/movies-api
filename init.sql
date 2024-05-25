@@ -2,7 +2,7 @@ CREATE EXTENSION "uuid-ossp";
 
 CREATE TABLE movies(
     id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL UNIQUE,
     year VARCHAR(4) NOT NULL,
     gender VARCHAR(50) NOT NULL
 );
