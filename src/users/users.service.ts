@@ -11,7 +11,10 @@ export class UsersService {
     ) {}
 
     async findOne(username: string){
-        return this.userRepository.findOneByOrFail({ username })
-        .catch((err) => { throw new UnauthorizedException() })
+        try{
+            return this.userRepository.findOneByOrFail({ username })
+        }catch(err){
+            throw new UnauthorizedException()
+        }
     }
 }

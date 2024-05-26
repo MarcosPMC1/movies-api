@@ -16,16 +16,16 @@ export class MoviesService {
 
   async create(createMovieDto: CreateMovieDto) {
     await this.cacheManager.del('movies')
-    return this.movieRepository.save(this.movieRepository.create(createMovieDto))
-    .catch((err) => {
-      console.log(err.detail)
-      if (/(email)[\s\S]+(already exists)/.test(err.detail)) {
+    try{
+      return await this.movieRepository.save(this.movieRepository.create(createMovieDto))
+    }catch(err){
+      if (/(title)[\s\S]+(already exists)/.test(err.detail)) {
         throw new BadRequestException(
           'Movie with this title already exists.',
         );
       }
       throw new Error(err)
-    })
+    }
   }
 
   findAll() {
@@ -33,15 +33,10 @@ export class MoviesService {
   }
 
   async findOne(id: string) {
-    return this.movieRepository.findOneOrFail({ where: { id } })
-    .catch((err) => {throw new NotFoundException()})
-  }
-
-  update(id: number) {
-    return `This action updates a #${id} movie`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} movie`;
+    try{
+      return await this.movieRepository.findOneOrFail({ where: { id } })
+    }catch(err){
+      throw new NotFoundException()
+    }
   }
 }

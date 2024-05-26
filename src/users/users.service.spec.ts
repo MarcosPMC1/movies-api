@@ -52,8 +52,9 @@ describe('UsersService', () => {
       expect(userRepository.findOneByOrFail).toHaveBeenCalledWith({ username: 'marcos' })
       expect(promise).toEqual(userMock)
     }),
+
     it('username invalid', () => {
-      jest.spyOn(userRepository, 'findOneByOrFail').mockRejectedValueOnce({})
+      jest.spyOn(userRepository, 'findOneByOrFail').mockRejectedValueOnce(new UnauthorizedException())
       expect(service.findOne('teste')).rejects.toThrow(UnauthorizedException)
     })
   })
