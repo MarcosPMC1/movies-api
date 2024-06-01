@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 env:
-  IMAGE_NAME: nestjs-api
+  IMAGE_NAME: movies-api
 
 jobs:
   test:
@@ -17,9 +17,19 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
+
+    - name: Login Docker Hub
+      env: 
+        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     
     - name: Build Docker image
       run: docker build -t $IMAGE_NAME --target=test .
 
     - name: Run Test
       run: docker run $IMAGE_NAME
+
+    - name: Push to Dockerhub
+      run: docker push marcospmcdev/movies-api:latest
