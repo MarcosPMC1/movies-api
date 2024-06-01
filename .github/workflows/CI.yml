@@ -25,6 +25,7 @@ jobs:
       run: docker run $IMAGE_NAME
 
   build:
+    needs: test
     name: Build and Push
     runs-on: ubuntu-latest
     steps:
