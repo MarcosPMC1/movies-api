@@ -49,4 +49,4 @@ jobs:
           file: ./Dockerfile
           push: true
           target: prod
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/movies-api:latest
