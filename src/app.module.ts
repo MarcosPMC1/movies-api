@@ -32,7 +32,7 @@ import { UsersModule } from './users/users.module';
           ttl: 30 * 1000,
           socket: {
             host: configService.getOrThrow('REDIS_HOST'),
-            port: configService.getOrThrow('REDIS_PORT')
+            port: Number(configService.getOrThrow('REDIS_PORT'))
           }
         })
       }),
