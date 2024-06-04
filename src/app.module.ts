@@ -15,10 +15,10 @@ import { UsersModule } from './users/users.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        username: configService.get('POSTGRES_USER'),
-        database: configService.get('POSTGRES_DB'),
-        password: configService.get('POSTGRES_PASSWORD'),
-        host: configService.get('POSTGRES_HOST'),
+        username: configService.getOrThrow('POSTGRES_USER'),
+        database: configService.getOrThrow('POSTGRES_DB'),
+        password: configService.getOrThrow('POSTGRES_PASSWORD'),
+        host: configService.getOrThrow('POSTGRES_HOST'),
         type: 'postgres',
         autoLoadEntities: true
       })
@@ -31,8 +31,8 @@ import { UsersModule } from './users/users.module';
         store: await redisStore({
           ttl: 30 * 1000,
           socket: {
-            host: configService.get('REDIS_HOST'),
-            port: configService.get('REDIS_PORT')
+            host: configService.getOrThrow('REDIS_HOST'),
+            port: configService.getOrThrow('REDIS_PORT')
           }
         })
       }),

@@ -1,20 +1,8 @@
 services:
   api: 
-    container_name: "movies-api"
-    environment:
-      - NODE_ENV=${NODE_ENV}
-    env_file:
-      - .env
-    build:
-      context: .
-      target: "${NODE_ENV}"
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
-    # restart: unless-stopped
+    name: movies-api-container
+    image: marcospmcdev/movies-api
+    restart: unless-stopped
     depends_on:
       - redis
       - postgres
