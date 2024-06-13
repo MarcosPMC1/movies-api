@@ -29,7 +29,6 @@ services:
       POSTGRES_DB: "${POSTGRES_DB}"
       PG_DATA: /var/lib/postgresql/data
     volumes:
-      - movies-postgres-data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - movies-network
@@ -42,7 +41,6 @@ services:
       - movies-network
   
 volumes:
-  movies-postgres-data:
   redis:
 
 networks:

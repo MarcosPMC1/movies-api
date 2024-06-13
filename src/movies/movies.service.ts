@@ -2,7 +2,7 @@ import { BadRequestException, Inject, Injectable, NotFoundException } from '@nes
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
-import { QueryFailedError, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Cache } from 'cache-manager';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class MoviesService {
   }
 
   findAll() {
-    return this.movieRepository.find()
+    return this.movieRepository.find() 
   }
 
   async findOne(id: string) {
@@ -39,4 +39,5 @@ export class MoviesService {
       throw new NotFoundException()
     }
   }
+
 }
